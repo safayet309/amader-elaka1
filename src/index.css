@@ -1,33 +1,38 @@
-@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap");
 
 :root {
-  font-family: "Hind Siliguri", sans-serif;
+  --primary: #16834b;
+  --primary-dark: #106b3d;
+  --primary-light: #eaf7f0;
 
-  color: #17201b;
-  background: #f6f8f7;
+  --text: #18231e;
+  --text-muted: #6f7974;
+
+  --background: #f7faf8;
+  --surface: #ffffff;
+  --border: #dce6e0;
+
+  --danger: #c94d4d;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+
+  --nav-height: 76px;
+
+  font-family:
+    "Noto Sans Bengali",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: var(--text);
+  background: var(--background);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-
-  --primary: #16834b;
-  --primary-dark: #0f6b3b;
-  --primary-light: #e8f6ee;
-
-  --text: #17201b;
-  --text-muted: #68736d;
-
-  --white: #ffffff;
-  --background: #f6f8f7;
-  --border: #e3e8e5;
-
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-
-  --container: 1180px;
-
-  --bottom-nav-height: 72px;
 }
 
 * {
@@ -46,7 +51,7 @@ body {
   background: var(--background);
   color: var(--text);
 
-  font-family: "Hind Siliguri", sans-serif;
+  font-family: inherit;
 }
 
 button,
@@ -70,150 +75,126 @@ img {
   display: block;
 }
 
+/* Main application container */
+
 #root {
   min-height: 100vh;
 }
 
-/* Main container */
+/* Prevent layout jumping */
 
-.container {
-  width: min(100% - 32px, var(--container));
+.app {
+  min-height: 100vh;
+  padding-bottom: var(--nav-height);
+}
+
+.page {
+  width: 100%;
+  max-width: 1180px;
   margin: 0 auto;
 }
 
 /* Common button */
 
-.primary-button {
+.btn {
   min-height: 44px;
   padding: 0 18px;
 
-  border: none;
-  border-radius: var(--radius-sm);
+  border: 0;
+  border-radius: 12px;
 
-  background: var(--primary);
-  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 
   font-size: 15px;
   font-weight: 600;
 
   transition:
     background 0.2s ease,
-    transform 0.2s ease;
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
-.primary-button:hover {
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  color: #ffffff;
+  background: var(--primary);
+}
+
+.btn-primary:hover {
   background: var(--primary-dark);
 }
 
-.primary-button:active {
-  transform: scale(0.98);
-}
-
-/* Common card */
-
-.card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-}
-
-/* Page spacing */
-
-.page {
-  min-height: 100vh;
-  padding-bottom: 32px;
-}
-
-/* Section */
+/* Common section */
 
 .section {
-  padding: 32px 0;
+  width: 100%;
+  padding: 28px 20px;
 }
 
 .section-title {
   margin: 0;
   font-size: 24px;
   line-height: 1.4;
-  font-weight: 700;
+  font-weight: 800;
 }
 
-.section-description {
-  margin: 6px 0 0;
+.section-subtitle {
+  margin: 7px 0 0;
   color: var(--text-muted);
   font-size: 15px;
+  line-height: 1.7;
 }
 
-/* Responsive */
+/* Desktop */
 
-@media (max-width: 768px) {
-  :root {
-    --bottom-nav-height: 68px;
-  }
-
-  .container {
-    width: min(100% - 24px, var(--container));
-  }
-
-  .page {
-    padding-bottom: calc(var(--bottom-nav-height) + 20px);
-  }
-
+@media (min-width: 768px) {
   .section {
-    padding: 24px 0;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 
   .section-title {
-    font-size: 21px;
+    font-size: 28px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 767px) {
+  .section {
+    padding: 24px 16px;
   }
 
-  .section-description {
+  .section-title {
+    font-size: 22px;
+  }
+
+  .section-subtitle {
     font-size: 14px;
   }
 
-  .primary-button {
+  .btn {
     min-height: 42px;
     padding: 0 15px;
     font-size: 14px;
   }
 }
 
-/* Small mobile */
+/* Small phones */
 
-@media (max-width: 420px) {
-  .container {
-    width: calc(100% - 20px);
+@media (max-width: 380px) {
+  .section {
+    padding-left: 14px;
+    padding-right: 14px;
   }
-}
 
-/* Prevent layout jumping */
-
-button,
-a,
-input,
-select {
-  -webkit-tap-highlight-color: transparent;
-}
-
-::selection {
-  background: var(--primary-light);
-  color: var(--primary-dark);
-}
-
-/* Scrollbar */
-
-::-webkit-scrollbar {
-  width: 7px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #cbd4cf;
-  border-radius: 20px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #aebbb4;
+  .section-title {
+    font-size: 20px;
+  }
 }
